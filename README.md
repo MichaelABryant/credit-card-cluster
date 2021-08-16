@@ -1,4 +1,4 @@
-# Project 4: Credit Card User Cluster Analysis (Python)
+# Project 4: Credit Card Users Cluster Analysis (Python)
 
 ## Resources
 
