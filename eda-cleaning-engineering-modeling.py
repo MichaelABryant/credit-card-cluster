@@ -183,12 +183,12 @@ scaler=MinMaxScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
-#####pickle
-import pickle
+# #####pickle
+# import pickle
 
-outfile = open('scaler.pkl', 'wb')
-pickle.dump(scaler,outfile)
-outfile.close()
+# outfile = open('scaler.pkl', 'wb')
+# pickle.dump(scaler,outfile)
+# outfile.close()
 
 #####KNN and Random Forest
 
@@ -257,8 +257,8 @@ y_pred = rf.predict(X_test)
 #assess accuracy
 print('RandomForestClassifier test accuracy: {}'.format(accuracy_score(y_test, y_pred)))
 
-#####pickle
+# #####pickle
 
-outfile = open('random_forest_model.pkl', 'wb')
-pickle.dump(rf,outfile)
-outfile.close()
+# outfile = open('random_forest_model.pkl', 'wb')
+# pickle.dump(rf,outfile)
+# outfile.close()
