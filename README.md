@@ -79,6 +79,56 @@ I feature engineered using the dataset for modeling. I made the following change
   * The first set is based on `AVG_PURCHASE_TRX_PRICE`, `ONEOFF_PURCHASES`, and `INSTALLMENTS_PURCHASES`
   * The second set is based on `BALANCE` and `AVG_CASH_ADVANCE_TRX_AMOUNT`
 
+<div align="center">
+
+<figure>
+<img src="images/avg_purchase_trx_price_ad_groups_purchases.jpg"><br/>
+  <figcaption></figcaption>
+</figure>
+<br/><br/>
+  
+</div>
+
+<div align="center">
+
+<figure>
+<img src="images/oneoff_ad_groups_purchases.jpg"><br/>
+  <figcaption></figcaption>
+</figure>
+<br/><br/>
+  
+</div>
+
+<div align="center">
+
+<figure>
+<img src="images/installments_ad_groups_purchases.jpg"><br/>
+  <figcaption></figcaption>
+</figure>
+<br/><br/>
+  
+</div>
+
+<div align="center">
+
+<figure>
+<img src="images/balance_ad_groups_cash_advance.jpg"><br/>
+  <figcaption></figcaption>
+</figure>
+<br/><br/>
+  
+</div>
+
+<div align="center">
+
+<figure>
+<img src="images/avg_cash_advance_trx_amount_ad_groups_cash_advance.jpg"><br/>
+  <figcaption></figcaption>
+</figure>
+<br/><br/>
+  
+</div>
+
 ### Model Building
 
 ### Model Performance
