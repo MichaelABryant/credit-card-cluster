@@ -136,8 +136,8 @@ First, I split the data into train and tests sets with a test set size of 25%.
 I then hyperparameter tuned the models with five-fold cross-validation and evaluated them using accuracy.
 
 The models I used were:
-* **kNeighborsClassifier** because I thoughts since I used a clustering algorithms to create the groups that classifying based on neighbors might be effective.
-* **RandomForestClassifier** because I wanted to try a tree model.
+* **kNeighborsClassifier** because I thought since I used a clustering algorithms to create the groups that classifying based on neighbors might be effective.
+* **RandomForestClassifier** because I wanted to try a tree model and this classifier is known to give good results even without hyperparameter tuning.
 
 ### Model Performance
 
