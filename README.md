@@ -5,7 +5,7 @@ This repository is for the analysis, clustering, and modeling done with a credit
 ### Code Used 
 
 **Python Version:** 3.7.10 <br />
-**Packages:** pandas, numpy, scipy, sklearn, matplotlib, seaborn, flask, statsmodels, shap, eli5, pickle<br />
+**Packages:** pandas, numpy, scipy, sklearn, matplotlib, seaborn, flask, shap, eli5, pickle<br />
 **For Web Framework Requirements:**  ```pip install -r requirements.txt```  
 
 ## Heart Disease Dataset
