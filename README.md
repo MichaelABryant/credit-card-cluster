@@ -76,8 +76,8 @@ I feature engineered using the dataset for modeling. I made the following change
 
 * Created variables `AVG_PURCHASE_TRX_PRICE`, `BALANCE_TO_CREDIT_LIMIT`, and `AVG_CASH_ADVANCE_TRX_AMOUNT`
 * Created two sets of four clusters:
-  * The first set is based on `AVG_PURCHASE_TRX_PRICE`, `ONEOFF_PURCHASES`, and `INSTALLMENTS_PURCHASES`
-  * The second set is based on `BALANCE` and `AVG_CASH_ADVANCE_TRX_AMOUNT`
+  * The first set `Ad_Groups_Purchases` is based on `AVG_PURCHASE_TRX_PRICE`, `ONEOFF_PURCHASES`, and `INSTALLMENTS_PURCHASES`
+  * The second set `Ad_Groups_Cash_Advance` is based on `BALANCE` and `AVG_CASH_ADVANCE_TRX_AMOUNT`
 
 <div align="center">
 
