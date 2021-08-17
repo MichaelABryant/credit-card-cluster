@@ -70,6 +70,10 @@ I looked at the distributions of the data and the correlations between variables
 
 ### Data Cleaning
 
+I cleaned the data to make the dataset usable for modeling. I made the following changes:
+
+* Imputed values in `MINIMUM_PAYMENTS` and `CREDIT_LIMIT` with the median values
+
 ### Feature Engineering
 
 I feature engineered using the dataset for modeling. I made the following changes:
