@@ -142,15 +142,8 @@ The models I used were:
 ### Model Performance
 
 The models were judged based on accuracy and each performed similarly.
-
-For the first classification based on classifying records into the `Ad_Groups_Purchases` clusters:
-
-**RandomForestClassifier** had the best training accuracy at 99.4% and a test accuracy of 99.3%. 
-
-For the first classification based on classifying records into the `Ad_Groups_Cash_Advance` clusters:
-
-**kNeighborsClassifier** had the best training accuracy at 99.7% and a test accuracy of 99.8%. 
-
+* For the first classification based on classifying records into the `Ad_Groups_Purchases` clusters **RandomForestClassifier** had the best training accuracy at 99.4% and a test accuracy of 99.3%. 
+* For the first classification based on classifying records into the `Ad_Groups_Cash_Advance` clusters **kNeighborsClassifier** had the best training accuracy at 99.7% and a test accuracy of 99.8%. 
 
 ## Productionization
 
