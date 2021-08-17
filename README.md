@@ -131,7 +131,24 @@ I feature engineered using the dataset for modeling. I made the following change
 
 ### Model Building
 
+First, I split the data into train and tests sets with a test set size of 25%.
+
+I then hyperparameter tuned the models with five-fold cross-validation and evaluated them using accuracy.
+
+The models I used were:
+* **kNeighborsClassifier** because I thoughts since I used a clustering algorithms to create the groups that classifying based on neighbors might be effective.
+* **RandomForestClassifier** because I wanted to try a tree model.
+
 ### Model Performance
+
+The models were judged based on accuracy and each performed similarly.
+
+For the first classification based on classifying records into the `Ad_Groups_Purchases` clusters:
+**RandomForestClassifier** had the best training accuracy at 99.4% and a test accuracy of 99.3%. 
+
+For the first classification based on classifying records into the `Ad_Groups_Cash_Advance` clusters:
+**kNeighborsClassifier** had the best training accuracy at 99.7% and a test accuracy of 99.8%. 
+
 
 ## Productionization
 
