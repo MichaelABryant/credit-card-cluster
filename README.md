@@ -31,7 +31,27 @@ I looked at the distributions of the data and the correlations between variables
 <div align="center">
   
 <figure>
-<img src=""><br/>
+<img src="images/corr-heatmap.jpg"><br/>
+  <figcaption></figcaption>
+</figure>
+<br/><br/>
+  
+</div>
+
+<div align="center">
+  
+<figure>
+<img src="images/pca-results.jpg"><br/>
+  <figcaption></figcaption>
+</figure>
+<br/><br/>
+  
+</div>
+
+<div align="center">
+  
+<figure>
+<img src="images/pca-weights.jpg"><br/>
   <figcaption></figcaption>
 </figure>
 <br/><br/>
