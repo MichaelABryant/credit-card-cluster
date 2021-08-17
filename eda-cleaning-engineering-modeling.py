@@ -118,79 +118,165 @@ plot_variance(pca);
 #about 50% of the variance is explained by these principal components
 #2 PCA chosen based on the elbow method
 
+#####feature engineering
+
+cc_data['AVG_PURCHASE_TRX_PRICE'] = cc_data.loc[:,'PURCHASES']/cc_data.loc[:,'PURCHASES_TRX']
+
+cc_data['AVG_PURCHASE_TRX_PRICE'] = cc_data.AVG_PURCHASE_TRX_PRICE.replace(np.NaN, 0)
+cc_data['AVG_PURCHASE_TRX_PRICE'] = cc_data.AVG_PURCHASE_TRX_PRICE.replace(np.inf, 0)
+
+cc_data['BALANCE_TO_CREDIT_LIMIT'] = cc_data.loc[:,'BALANCE']/cc_data.loc[:,'CREDIT_LIMIT']
+
+cc_data['AVG_CASH_ADVANCE_TRX_AMOUNT'] = cc_data.loc[:,'CASH_ADVANCE']/cc_data.loc[:,'CASH_ADVANCE_TRX']
+
+cc_data['AVG_CASH_ADVANCE_TRX_AMOUNT'] = cc_data.AVG_CASH_ADVANCE_TRX_AMOUNT.replace(np.NaN, 0)
+cc_data['AVG_CASH_ADVANCE_TRX_AMOUNT'] = cc_data.AVG_CASH_ADVANCE_TRX_AMOUNT.replace(np.inf, 0)
+
 #####cluster analysis
+
+##purchases
 
 #standardize for kmeans
 from sklearn.preprocessing import StandardScaler
 
-kmeans_columns = ['PURCHASES','ONEOFF_PURCHASES', 'INSTALLMENTS_PURCHASES', 'CASH_ADVANCE']
-cc_data_kmeans = cc_data.loc[:, kmeans_columns]
+kmeans_columns1 = ['AVG_PURCHASE_TRX_PRICE', 'ONEOFF_PURCHASES','INSTALLMENTS_PURCHASES']
+cc_data_kmeans1 = cc_data.loc[:, kmeans_columns1]
 
 standardize = StandardScaler()
-cc_data_kmeans = standardize.fit_transform(cc_data_kmeans)
+cc_data_kmeans1 = standardize.fit_transform(cc_data_kmeans1)
 
-#generate clusters to determine different clusters to advertise to
+#silhouette and elbow method
 
 from sklearn.cluster import KMeans
 
-kmeans = KMeans(n_clusters=4, random_state = 1)
-cc_data["Ad_Groups"] = kmeans.fit_predict(cc_data_kmeans)
+kmeans_models = [KMeans(n_clusters=k, random_state=1).fit(cc_data_kmeans1) for k in range (1, 10)]
+innertia = [model.inertia_ for model in kmeans_models]
 
-cc_data["Ad_Groups"] = cc_data["Ad_Groups"].astype("category")
+plt.plot(range(1, 10), innertia)
+plt.title('Elbow method')
+plt.xlabel('Number of Clusters')
+plt.ylabel('WCSS')
+plt.show()
+
+#generate clusters to determine different clusters to advertise to
+
+kmeans = KMeans(n_clusters=4, random_state = 1)
+cc_data["Ad_Groups_Purchases"] = kmeans.fit_predict(cc_data_kmeans1)
+
+cc_data["Ad_Groups_Purchases"] = cc_data["Ad_Groups_Purchases"].astype("category")
 
 #plot variables against clusters
 
-for i in ['BALANCE', 'BALANCE_FREQUENCY', 'PURCHASES',
+for i in ['BALANCE', 'BALANCE_FREQUENCY', 'BALANCE_TO_CREDIT_LIMIT','AVG_PURCHASE_TRX_PRICE', 'PURCHASES',
        'ONEOFF_PURCHASES', 'INSTALLMENTS_PURCHASES', 'CASH_ADVANCE',
        'PURCHASES_FREQUENCY', 'ONEOFF_PURCHASES_FREQUENCY',
        'PURCHASES_INSTALLMENTS_FREQUENCY', 'CASH_ADVANCE_FREQUENCY',
        'CASH_ADVANCE_TRX', 'PURCHASES_TRX', 'CREDIT_LIMIT', 'PAYMENTS',
        'MINIMUM_PAYMENTS', 'PRC_FULL_PAYMENT', 'TENURE']:
-    sns.violinplot(x ='Ad_Groups',y=i,data=cc_data)
+    sns.stripplot(x ='Ad_Groups_Purchases',y=i,data=cc_data)
     plt.show()
     
-# Cluster characteristics and what to advertise
 
-# Cluster 0: mostly installment purchases and some oneoff purchases
-# high priced item advertisements broken into installments such as infomercial items, furniture, etc.
-# Cluster 1: small item purchases
-# local advertisements for low priced items such as best buy, restaurants, etc. or items off of amazon
-# Cluster 2: mostly oneoff purchases and some installment purchases
-# high priced item advertisements such as electronics, furniture, household appliances, etc.
-# Cluster 3: cash advances
-# loan advertisements
+##cash advance
+
+#standardize for kmeans
+kmeans_columns2 = ['BALANCE', 'AVG_CASH_ADVANCE_TRX_AMOUNT']
+cc_data_kmeans2 = cc_data.loc[:, kmeans_columns2]
+
+standardize = StandardScaler()
+cc_data_kmeans2 = standardize.fit_transform(cc_data_kmeans2)
+
+#silhouette and elbow method
+kmeans_models = [KMeans(n_clusters=k, random_state=1).fit(cc_data_kmeans2) for k in range (1, 10)]
+innertia = [model.inertia_ for model in kmeans_models]
+
+plt.plot(range(1, 10), innertia)
+plt.title('Elbow method')
+plt.xlabel('Number of Clusters')
+plt.ylabel('WCSS')
+plt.show()
+
+#generate clusters to determine different clusters to advertise to
+kmeans = KMeans(n_clusters=4, random_state = 1)
+cc_data["Ad_Groups_Cash_Advance"] = kmeans.fit_predict(cc_data_kmeans2)
+
+cc_data["Ad_Groups_Cash_Advance"] = cc_data["Ad_Groups_Cash_Advance"].astype("category")
+
+
+#plot variables against clusters
+for i in ['BALANCE', 'BALANCE_FREQUENCY', 'BALANCE_TO_CREDIT_LIMIT', 'AVG_PURCHASE_TRX_PRICE', 'PURCHASES',
+       'ONEOFF_PURCHASES', 'INSTALLMENTS_PURCHASES', 'AVG_CASH_ADVANCE_TRX_AMOUNT','CASH_ADVANCE',
+       'PURCHASES_FREQUENCY', 'ONEOFF_PURCHASES_FREQUENCY',
+       'PURCHASES_INSTALLMENTS_FREQUENCY', 'CASH_ADVANCE_FREQUENCY',
+       'CASH_ADVANCE_TRX', 'PURCHASES_TRX', 'CREDIT_LIMIT', 'PAYMENTS',
+       'MINIMUM_PAYMENTS', 'PRC_FULL_PAYMENT', 'TENURE']:
+    sns.stripplot(x ='Ad_Groups_Cash_Advance',y=i,data=cc_data)
+    plt.show()
+
 
 #####preparing data for classification
 
 #create X and y variables
-X = cc_data.loc[:,kmeans_columns]
-y = cc_data['Ad_Groups']
+X1 = cc_data.loc[:,kmeans_columns1]
+y1 = cc_data['Ad_Groups_Purchases']
+
+X2 = cc_data.loc[:,kmeans_columns2]
+y2 = cc_data['Ad_Groups_Cash_Advance']
 
 #import libraries
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 
+
+##puchases
 #create dummy variables for y
-y = pd.get_dummies(y)
+y1 = pd.get_dummies(y1)
 
 # train/test split with stratify making sure classes are evenlly represented across splits
-X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, train_size=0.75, random_state=1)
+X_train1, X_test1, y_train1, y_test1 = train_test_split(X1, y1, stratify=y1, train_size=0.75, random_state=1)
 
 #define scaler
-scaler=MinMaxScaler()
+scaler_purchases=MinMaxScaler()
 
 #apply preprocessing to split data with scaler
-X_train = scaler.fit_transform(X_train)
-X_test = scaler.transform(X_test)
+X_train1 = scaler_purchases.fit_transform(X_train1)
+X_test1 = scaler_purchases.transform(X_test1)
 
-# #####pickle
-# import pickle
+#####pickle
+import pickle
 
-# outfile = open('scaler.pkl', 'wb')
-# pickle.dump(scaler,outfile)
-# outfile.close()
+outfile = open('scaler_purchases.pkl', 'wb')
+pickle.dump(scaler_purchases,outfile)
+outfile.close()
 
-#####KNN and Random Forest
+
+
+##cash
+#create dummy variables for y
+y2 = pd.get_dummies(y2)
+
+# train/test split with stratify making sure classes are evenlly represented across splits
+X_train2, X_test2, y_train2, y_test2 = train_test_split(X2, y2, stratify=y2, train_size=0.75, random_state=1)
+
+#define scaler
+scaler_cash=MinMaxScaler()
+
+#apply preprocessing to split data with scaler
+X_train2 = scaler_cash.fit_transform(X_train2)
+X_test2 = scaler_cash.transform(X_test2)
+
+
+
+#####pickle
+import pickle
+
+outfile = open('scaler_cash.pkl', 'wb')
+pickle.dump(scaler_cash,outfile)
+outfile.close()
+
+
+#####purchases clusters ML
+
 
 #import machine learning libraries
 from sklearn.neighbors import KNeighborsClassifier
@@ -202,12 +288,12 @@ from numpy import mean, std
 
 #KNeighborsClassifier with five-fold cross-validation
 knn = KNeighborsClassifier()
-cv = cross_val_score(knn,X_train,y_train,cv=5)
+cv = cross_val_score(knn,X_train1,y_train1,cv=5)
 print(mean(cv), '+/-', std(cv))
 
 #random forest classifier with five-fold cross validation
 rf = RandomForestClassifier(random_state = 1)
-cv = cross_val_score(rf,X_train,y_train,cv=5)
+cv = cross_val_score(rf,X_train1,y_train1,cv=5)
 print(mean(cv), '+/-', std(cv))
 
 #hyperparameter tuning
@@ -223,42 +309,98 @@ def clf_performance(classifier, model_name):
 #KNeighborsClassifier tuning with five-fold cross-validation
 knn = KNeighborsClassifier()
 param_grid = {
-              'n_neighbors' : [9],
+              'n_neighbors' : np.arange(5,12,1),
               'weights' : ['uniform', 'distance'],
               'algorithm' : ['auto', 'ball_tree','kd_tree'],
               'p' : [1,2]
              }
 clf_knn = GridSearchCV(knn, param_grid = param_grid, cv = 5, verbose = False, n_jobs = -1)
-best_clf_knn = clf_knn.fit(X_train,y_train)
+best_clf_knn = clf_knn.fit(X_train1,y_train1)
 clf_performance(best_clf_knn,'KNN')
 
-#random forest tuning with five-fold cross-validation
+#RandomForest tuning with five-fold cross-validation
 rf = RandomForestClassifier(random_state = 1)
 param_grid =  {
-                'n_estimators': [93], 
+                'n_estimators': np.arange(5,10,1), 
                 'bootstrap': [True,False], #bagging (T) vs. pasting (F)
-                #'max_depth': np.arange(1,10,2),
+                #'max_depth': [1],
                 'max_features': ['auto','sqrt'],
-                'min_samples_leaf': [1],
-                'min_samples_split': [2]
+                'min_samples_leaf': np.arange(1,5,1),
+                'min_samples_split': np.arange(1,5,1)
               }
 clf_rf_rnd = GridSearchCV(rf, param_grid = param_grid, cv = 5, n_jobs = -1)
-best_clf_rf_rnd = clf_rf_rnd.fit(X_train,y_train)
+best_clf_rf_rnd = clf_rf_rnd.fit(X_train1,y_train1)
 clf_performance(best_clf_rf_rnd,'Random Forest')
 
 #####final model
 
 from sklearn.metrics import accuracy_score
 
-rf = RandomForestClassifier(random_state = 1, bootstrap= False, max_features= 'auto', min_samples_leaf= 1, min_samples_split= 2, n_estimators= 93)
-rf.fit(X_train,y_train)
-y_pred = rf.predict(X_test)
+rf = RandomForestClassifier(random_state = 1, bootstrap= False, max_features= 'auto', min_samples_leaf= 3, min_samples_split= 2, n_estimators= 7)
+rf.fit(X_train1,y_train1)
+y_pred1 = rf.predict(X_test1)
 
 #assess accuracy
-print('RandomForestClassifier test accuracy: {}'.format(accuracy_score(y_test, y_pred)))
+print('RandomForestClassifier test accuracy: {}'.format(accuracy_score(y_test1, y_pred1)))
 
-# #####pickle
+#####pickle
 
-# outfile = open('random_forest_model.pkl', 'wb')
-# pickle.dump(rf,outfile)
-# outfile.close()
+outfile = open('random_forest_model.pkl', 'wb')
+pickle.dump(rf,outfile)
+outfile.close()
+
+
+#####cash clusters ML
+
+##baseline
+
+#KNeighborsClassifier with five-fold cross-validation
+knn = KNeighborsClassifier()
+cv = cross_val_score(knn,X_train2,y_train2,cv=5)
+print(mean(cv), '+/-', std(cv))
+
+#random forest classifier with five-fold cross validation
+rf = RandomForestClassifier(random_state = 1)
+cv = cross_val_score(rf,X_train2,y_train2,cv=5)
+print(mean(cv), '+/-', std(cv))
+
+##hyperparameter tuning
+
+#KNeighborsClassifier tuning with five-fold cross-validation
+knn = KNeighborsClassifier()
+param_grid = {
+              'n_neighbors' : np.arange(5,12,1),
+              'weights' : ['uniform', 'distance'],
+              'algorithm' : ['auto', 'ball_tree','kd_tree'],
+              'p' : [1,2]
+             }
+clf_knn = GridSearchCV(knn, param_grid = param_grid, cv = 5, verbose = False, n_jobs = -1)
+best_clf_knn = clf_knn.fit(X_train2,y_train2)
+clf_performance(best_clf_knn,'KNN')
+
+#RandomForest tuning with five-fold cross-validation
+rf = RandomForestClassifier(random_state = 1)
+param_grid =  {
+                'n_estimators': np.arange(9,15,1), 
+                'bootstrap': [True,False], #bagging (T) vs. pasting (F)
+                #'max_depth': [1],
+                'max_features': ['auto','sqrt'],
+                'min_samples_leaf': np.arange(1,5,1),
+                'min_samples_split': np.arange(4,10,1)
+              }
+clf_rf_rnd = GridSearchCV(rf, param_grid = param_grid, cv = 5, n_jobs = -1)
+best_clf_rf_rnd = clf_rf_rnd.fit(X_train2,y_train2)
+clf_performance(best_clf_rf_rnd,'Random Forest')
+
+##final model
+
+knn = KNeighborsClassifier(algorithm= 'auto', n_neighbors= 5, p= 1, weights= 'distance')
+knn.fit(X_train2,y_train2)
+y_pred2 = knn.predict(X_test2)
+
+#assess accuracy
+print('KNN test accuracy: {}'.format(accuracy_score(y_test2, y_pred2)))
+
+outfile = open('knn_model.pkl', 'wb')
+pickle.dump(knn,outfile)
+outfile.close()
