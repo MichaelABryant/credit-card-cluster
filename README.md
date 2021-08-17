@@ -20,6 +20,8 @@ The dataset was gathered from [Kaggle](https://www.kaggle.com/arjunbhasin2013/cc
 
 ### eda-cleaning-engineering-modeling.py
 
+This file contains the EDA, data cleaning, feature engineering, clustering, and modeling. The EDA is performed using descriptive statistics, histograms to determine distributions, and a correlation heatmap using the Pearson correlation coefficient. Features are engineered based on the principal component analysis (PCA) results. Other feature engineering includes the creation of clusters and numerical features are scaled using MinMaxScaler. Two clusters are created based on the prinipal components and models are created to predict classification. The scalers and models are pickled after fitting for use with productionization.
+
 ## Results
 
 ### EDA
