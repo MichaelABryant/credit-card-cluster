@@ -41,6 +41,16 @@ I looked at the distributions of the data and the correlations between variables
 <div align="center">
   
 <figure>
+<img src="images/pca-explained-variance.jpg"><br/>
+  <figcaption></figcaption>
+</figure>
+<br/><br/>
+  
+</div>
+
+<div align="center">
+  
+<figure>
 <img src="images/pca-weights.jpg"><br/>
   <figcaption></figcaption>
 </figure>
