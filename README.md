@@ -41,7 +41,7 @@ I looked at the distributions of the data and the correlations between variables
 <div align="center">
   
 <figure>
-<img src="images/pca-results.jpg"><br/>
+<img src="images/pca-weights.jpg"><br/>
   <figcaption></figcaption>
 </figure>
 <br/><br/>
@@ -51,7 +51,7 @@ I looked at the distributions of the data and the correlations between variables
 <div align="center">
   
 <figure>
-<img src="images/pca-weights.jpg"><br/>
+<img src="images/pca-results.jpg"><br/>
   <figcaption></figcaption>
 </figure>
 <br/><br/>
