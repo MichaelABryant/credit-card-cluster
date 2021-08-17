@@ -32,7 +32,7 @@ I looked at the distributions of the data and the correlations between variables
   
 <figure>
 <img src="images/corr-heatmap.jpg"><br/>
-  <figcaption></figcaption>
+  <figcaption>Figure 1: Correlation heatmap using Pearson's correlation coeffient.</figcaption>
 </figure>
 <br/><br/>
   
@@ -42,7 +42,7 @@ I looked at the distributions of the data and the correlations between variables
   
 <figure>
 <img src="images/pca-explained-variance.jpg"><br/>
-  <figcaption></figcaption>
+  <figcaption>Figure 2: Plots after using the elbow method for determining the number of principal components where about 50% of the variance is explained by two.</figcaption>
 </figure>
 <br/><br/>
   
@@ -52,7 +52,7 @@ I looked at the distributions of the data and the correlations between variables
   
 <figure>
 <img src="images/pca-weights.jpg"><br/>
-  <figcaption></figcaption>
+  <figcaption>Figure 3: Weights showing how variables change along the principal components where PC1 is characterized by purchases and PC2 is characterized by balance and cash advances.</figcaption>
 </figure>
 <br/><br/>
   
@@ -62,7 +62,7 @@ I looked at the distributions of the data and the correlations between variables
   
 <figure>
 <img src="images/pca-results.jpg"><br/>
-  <figcaption></figcaption>
+  <figcaption>Figure 4: Plotting data using the principal components as axes to determine how data varies with each axis.</figcaption>
 </figure>
 <br/><br/>
   
@@ -87,7 +87,7 @@ I feature engineered using the dataset for modeling. I made the following change
 
 <figure>
 <img src="images/avg_purchase_trx_price_ad_groups_purchases.jpg"><br/>
-  <figcaption></figcaption>
+  <figcaption>Figure 5: Plot showing differences in AVG_PURCHASE_TRX_PRICE between clusters in the Ad_Groups_Purchases set.</figcaption>
 </figure>
 <br/><br/>
   
@@ -97,7 +97,7 @@ I feature engineered using the dataset for modeling. I made the following change
 
 <figure>
 <img src="images/oneoff_ad_groups_purchases.jpg"><br/>
-  <figcaption></figcaption>
+  <figcaption>Figure 6: Plot showing differences in ONEOFF_PURCHASES between clusters in the Ad_Groups_Purchases set.</figcaption>
 </figure>
 <br/><br/>
   
@@ -107,7 +107,7 @@ I feature engineered using the dataset for modeling. I made the following change
 
 <figure>
 <img src="images/installments_ad_groups_purchases.jpg"><br/>
-  <figcaption></figcaption>
+  <figcaption>Figure 7: Plot showing differences in INSTALLMENTS_PURCHASES between clusters in the Ad_Groups_Purchases set.</figcaption>
 </figure>
 <br/><br/>
   
@@ -117,7 +117,7 @@ I feature engineered using the dataset for modeling. I made the following change
 
 <figure>
 <img src="images/balance_ad_groups_cash_advance.jpg"><br/>
-  <figcaption></figcaption>
+  <figcaption>Figure 8: Plot showing differences in BALANCE between clusters in the Ad_Groups_Cash_Advance set.</figcaption>
 </figure>
 <br/><br/>
   
@@ -127,7 +127,7 @@ I feature engineered using the dataset for modeling. I made the following change
 
 <figure>
 <img src="images/avg_cash_advance_trx_amount_ad_groups_cash_advance.jpg"><br/>
-  <figcaption></figcaption>
+  <figcaption>Figure 9: Plot showing differences in AVG_CASH_ADVANCE_TRX_AMOUNT between clusters in the Ad_Groups_Cash_Advance set.</figcaption>
 </figure>
 <br/><br/>
   
