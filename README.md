@@ -151,7 +151,7 @@ The models were judged based on accuracy and each performed similarly.
 
 ## Productionization
 
-I built a [web app](https://ad-advisor.herokuapp.com/) hosted on the cloud application platform Heroku with a front end which takes vehicle input from the user and outputs a predicted price using the SVR model. More information on this can be found at it's [repo](https://github.com/MichaelBryantDS/credit-card-cluster-app).
+I built a [web app](https://ad-advisor.herokuapp.com/) hosted on the cloud application platform Heroku with a front end which takes credit card history input and outputs recommendations for advertising using the two classification models. More information on this can be found at it's [repo](https://github.com/MichaelBryantDS/credit-card-cluster-app).
 
 <div align="center">
 
