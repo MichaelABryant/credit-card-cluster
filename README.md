@@ -156,7 +156,7 @@ I built a [web app](https://ad-advisor.herokuapp.com/) hosted on the cloud appli
 <div align="center">
 
 <figure>
-<img src="images/web_app.jpg"><br/>
+<img src="images/web_app.JPG"><br/>
   <figcaption>Figure 10: Front end of application using the two models to predict credit card clusters to advise how to advertise to the users.</figcaption>
 </figure>
 <br/><br/>
