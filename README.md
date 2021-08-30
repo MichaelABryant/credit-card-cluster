@@ -149,19 +149,9 @@ The models were judged based on accuracy and each performed similarly.
 * For the first classification based on classifying records into the `Ad_Groups_Purchases` clusters **RandomForestClassifier** had the best training accuracy at 99.4% and a test accuracy of 99.3%. 
 * For the first classification based on classifying records into the `Ad_Groups_Cash_Advance` clusters **kNeighborsClassifier** had the best training accuracy at 99.7% and a test accuracy of 99.8%. 
 
-## Productionization
+## Applications
 
-I built a [web app](https://ad-advisor.herokuapp.com/) hosted on the cloud application platform Heroku with a front end which takes credit card history input and outputs recommendations for advertising using the two classification models. More information on this can be found at it's [repo](https://github.com/MichaelBryantDS/credit-card-cluster-app).
-
-<div align="center">
-
-<figure>
-<img src="images/web_app.JPG"><br/>
-  <figcaption>Figure 10: Front end of application using the two models to predict credit card clusters to advise how to advertise to the users.</figcaption>
-</figure>
-<br/><br/>
-  
-</div>
+Each set of clusters can be targeted with ads based on their cash advance transactions, credit card balance, and purchase transactions. The ads can be tailored based on the average price spent per transactions, because some people tended to use their credit card for high priced items or for frequent small purchases. Items advertised as installments appeal to some people according to their transaction history, so these types of ads can be targeted to those clusters. In addition, some people primarily used their credit cards for cash advances so they may be interested in loan advertisements. The amount in cash advances can be used to target them with different size loans. Lastly, there are people who took large cash advances and used their cards for purchases, but had a high balance. For this group, financial help advertisements is a possibility. These cluster classification models can be used by advertisement companies with access to credit card history in order to make more efficient advertisment decisions.
 
 ## Resources
 
