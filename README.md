@@ -1,11 +1,11 @@
 # Credit Card Users Cluster Analysis
 
-This repository is for the analysis, clustering, and modeling done with a credit card history dataset. Below you will find an overview of the data, code, and results. The goal was to create a project where I perform an exploratory data analysis (EDA) including a principal component analysis (PCA), cluster analaysis, feature engineering, apply machine learning algorithms to predict clusters based on credit card usage, and create a [deployed application with a front end](https://ad-advisor.herokuapp.com/) to productionize the best performing model. The repo for the app can be found [here](https://github.com/MichaelBryantDS/credit-card-cluster-app).
+This repository is for the analysis, clustering, and modeling done with a credit card history dataset. Below you will find an overview of the data, code, and results. The goal was to create a project where I perform an exploratory data analysis (EDA) including a principal component analysis (PCA), cluster analaysis, feature engineering, and apply machine learning algorithms to predict clusters based on credit card usage.
 
 ### Code Used 
 
 **Python Version:** 3.7.10 <br />
-**Packages:** pandas, numpy, scipy, sklearn, matplotlib, seaborn, flask, shap, eli5, pickle<br />
+**Packages:** pandas, numpy, scipy, sklearn, matplotlib, seaborn, shap, eli5<br />
 **For Web Framework Requirements:**  ```pip install -r requirements.txt```  
 
 ## Heart Disease Dataset
