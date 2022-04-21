@@ -1,4 +1,4 @@
-# Project Overview for Credit Card Users Cluster Analysis
+# Credit Card Users Cluster Analysis
 
 This repository is for the analysis, clustering, and modeling done with a credit card history dataset. Below you will find an overview of the data, code, and results. The goal was to create a project where I perform an exploratory data analysis (EDA) including a principal component analysis (PCA), cluster analaysis, feature engineering, and apply machine learning algorithms to predict clusters based on credit card usage.
 
